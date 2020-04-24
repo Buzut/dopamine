@@ -1,0 +1,50 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        'Segoe UI',
+        Roboto,
+        Oxygen-Sans,
+        Ubuntu,
+        Cantarell,
+        'Helvetica Neue',
+        sans-serif;
+    background-color: @white;
+}
+
+// one direction margins
+// https://csswizardry.com/2012/06/single-direction-margin-declarations/
+h1, h2, h3, h4, h5, h6, hgroup, ul, ol, dd, p, img, figure, pre, table, fieldset, hr {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+
+// if you wanna style the select input
+// https://www.filamentgroup.com/lab/select-css.html
+button, input, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+}
+
+// normalize search input on webkit
+// https://css-tricks.com/webkit-html5-search-inputs/
+// http://geek.michaelgrace.org/2011/06/webkit-search-input-styling/
+input[type=search] {
+    -webkit-appearance: textfield;
+    -webkit-box-sizing: content-box;
+}
+
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button {
+    display: none;
+}

@@ -1,0 +1,73 @@
+{
+  "name": "dopamine",
+  "version": "1.0.0",
+  "description": "The next big thing",
+  "scripts": {
+    "prepare": "test -d .git && cd .git/hooks/ && curl -O https://raw.githubusercontent.com/Buzut/git-emojis-hook/master/commit-msg && curl -O https://raw.githubusercontent.com/Buzut/git-emojis-hook/master/prepare-commit-msg && chmod +x * || exit 0",
+
+    "css:build:dev": "mkdir -p public/styles/ && lessc --source-map-map-inline styles/main.less public/styles/main-$npm_package_version.min.css",
+    "css:build:prod": "mkdir -p public/styles/ && lessc styles/main.less | postcss --use autoprefixer -b 'last 2 versions' | cssmin > public/styles/main-$npm_package_version.min.css",
+    "css:watch": "nodemon -e less --watch styles -x 'npm run css:build:dev'",
+
+    "js:esmbuild": "mkdir -p public/scripts/ && BABEL_ENV=esm rollup --config",
+    "js:iifebuild": "mkdir -p public/scripts/ && BABEL_ENV=iife rollup --config",
+    "js:build": "npm run js:esmbuild && npm run js:iifebuild",
+    "js:watch": "BABEL_ENV=esm rollup --config --watch",
+
+    "template:build": "ejs-cli -b templates/ '**/*.ejs' -e partials/ --out public/",
+    "template:watch": "nodemon -e ejs --watch templates -x 'npm run template:build'",
+    "copyFonts": "cp -R ./fonts ./public/",
+
+    "compress:clean": "find public -name '*.gz' -exec rm '{}' \\; && find ./public -name '*.br' -exec rm '{}' \\;",
+    "compress:jpg": "mkdir -p public/img && imagemin img/*.jpg -p=mozjpeg $1 -o public/img/",
+    "compress:png": "mkdir -p public/img && imagemin img/*.png -p=optipng $1 -o public/img/",
+    "compress:gif": "mkdir -p public/img && imagemin img/*.gif -p=gifsicle $1 -o public/img/",
+    "compress:svg": "mkdir -p public/img && imagemin img/*.svg -p=svgo $1 -o public/img/",
+    "compress:webp": "mkdir -p public/img && find ./img \\( -name '*.jpg' -o -name '*.jpeg' -o -name '*.png' -o -name '*.gif' \\) -execdir bash -c 'dir=`pwd | sed 's/img//'`; imagemin -p=webp $1 > \"$dir\"public/img/$1.webp' _ {} \\;",
+    "compress:gz": "find ./public \\( -name '*.html' -o -name '*.svg' -o -name '*.js' -o -name '*.css' \\) -exec gzip -9 -k -f '{}' \\;",
+    "compress:br": "find ./public \\( -name '*.html' -o -name '*.svg' -o -name '*.js' -o -name '*.css' \\) -exec brotli -Zf '{}' \\;",
+    "compress:all": "npm run compress:jpg && npm run compress:png && npm run compress:svg && npm run compress:webp && npm run compress:gz && npm run compress:br",
+
+    "clean": "rm -rf public/",
+    "build": "npm run clean && npm run template:build && npm run copyFonts && npm run css:build && npm run js:build && npm run compress:all",
+    "watch": "npm run compress:clean && npm run serve && npm run template:watch & npm run css:watch & npm run js:watch",
+    "serve": "http-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "xxxx.git"
+  },
+  "author": "Buzut (https://buzut.net)",
+  "devDependencies": {
+    "autoprefixer": "^8.6.5",
+    "babel-cli": "^6.26.0",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-preset-env": "^1.7.0",
+    "cssmin": "^0.4.3",
+    "ejs-cli": "git+https://github.com/Buzut/ejs-cli.git",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-plugin-import": "^2.20.2",
+    "html-minifier": "^3.5.21",
+    "http-server": "^0.12.1",
+    "imagemin-cli": "^5.1.0",
+    "imagemin-gifsicle": "^7.0.0",
+    "imagemin-mozjpeg": "^8.0.0",
+    "imagemin-optipng": "^7.1.0",
+    "imagemin-svgo": "^7.1.0",
+    "imagemin-webp": "^5.1.0",
+    "less": "^3.11.1",
+    "nodemon": "^1.19.4",
+    "postcss-cli": "^5.0.1",
+    "rollup": "^2.7.2",
+    "rollup-plugin-babel": "^3.0.7",
+    "rollup-plugin-commonjs": "^9.3.4",
+    "rollup-plugin-node-resolve": "^3.3.0",
+    "rollup-plugin-terser": "^1.0.1",
+    "stylelint": "^10.1.0",
+    "stylelint-config-standard": "^18.3.0",
+    "stylelint-high-performance-animation": "^1.5.1",
+    "stylelint-no-unsupported-browser-features": "^3.0.2",
+    "stylelint-order": "^4.0.0"
+  }
+}
