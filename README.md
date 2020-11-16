@@ -2,11 +2,11 @@
 Npm driven, **lightweight** boilerplate to bootstrap frontend projects.
 Packed with all the things you need, so that you can focus on what matters: **writing HTML, CSS & JavaScript**!
 
-Dopamine speeds up your working you by provinding you with a pre-configured templating engine (helps you be smart, [DRY](https://encyclopedia.thefreedictionary.com/Don%27t+Repeat+Yourself)), sane linting for scripts and styles, a local development server and loads of performance optimisations to make your site lightning fast.
+Dopamine speeds up your workflow by provinding you with a pre-configured templating engine (helps you be smart, [DRY](https://encyclopedia.thefreedictionary.com/Don%27t+Repeat+Yourself)), sane linting for scripts and styles, a local development server and loads of performance optimisations to make your site lightning fast.
 
 ## What's included
 * [EJS](https://ejs.co/), a pure JavaScript templating engine
-* build styles from CSS or LESS files and automatically add prefixes to CSS properties that need to be
+* build styles from CSS or Less files and automatically add prefixes to CSS properties that need to be
 * manage assets versioning through native npm version (just use `npm version [major|minor|pacth]` as you normally would)
 * bundle & compile ES6+ JS into browser compatible JS (you can `import` or `require` modules straight from npm)
 * export a JS module for modern browsers and a classical script for legacy ones
