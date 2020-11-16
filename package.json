@@ -4,20 +4,16 @@
   "description": "The next big thing",
   "scripts": {
     "prepare": "test -d .git && cd .git/hooks/ && curl -O https://raw.githubusercontent.com/Buzut/git-emojis-hook/master/commit-msg && curl -O https://raw.githubusercontent.com/Buzut/git-emojis-hook/master/prepare-commit-msg && chmod +x * || exit 0",
-
     "css:build:dev": "mkdir -p public/styles/ && lessc --source-map-map-inline styles/main.less public/styles/main-$npm_package_version.min.css",
     "css:build:prod": "mkdir -p public/styles/ && lessc styles/main.less | postcss --use autoprefixer -b 'last 2 versions' | cssmin > public/styles/main-$npm_package_version.min.css",
     "css:watch": "nodemon -e less --watch styles -x 'npm run css:build:dev'",
-
     "js:esmbuild": "mkdir -p public/scripts/ && BABEL_ENV=esm rollup --config",
     "js:iifebuild": "mkdir -p public/scripts/ && BABEL_ENV=iife rollup --config",
     "js:build": "npm run js:esmbuild && npm run js:iifebuild",
     "js:watch": "BABEL_ENV=esm rollup --config --watch",
-
     "template:build": "ejs-cli -b templates/ '**/*.ejs' -e partials/ --out public/",
     "template:watch": "nodemon -e ejs --watch templates -x 'npm run template:build'",
     "copyFonts": "cp -R ./fonts ./public/",
-
     "compress:clean": "find public -name '*.gz' -exec rm '{}' \\; && find ./public -name '*.br' -exec rm '{}' \\;",
     "compress:jpg": "mkdir -p public/img && imagemin img/*.jpg -p=mozjpeg $1 -o public/img/",
     "compress:png": "mkdir -p public/img && imagemin img/*.png -p=optipng $1 -o public/img/",
@@ -27,7 +23,6 @@
     "compress:gz": "find ./public \\( -name '*.html' -o -name '*.svg' -o -name '*.js' -o -name '*.css' \\) -exec gzip -9 -k -f '{}' \\;",
     "compress:br": "find ./public \\( -name '*.html' -o -name '*.svg' -o -name '*.js' -o -name '*.css' \\) -exec brotli -Zf '{}' \\;",
     "compress:all": "npm run compress:jpg && npm run compress:png && npm run compress:svg && npm run compress:webp && npm run compress:gz && npm run compress:br",
-
     "clean": "rm -rf public/",
     "build": "npm run clean && npm run template:build && npm run copyFonts && npm run css:build && npm run js:build && npm run compress:all",
     "watch": "npm run compress:clean && npm run serve && npm run template:watch & npm run css:watch & npm run js:watch",
@@ -49,7 +44,7 @@
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-plugin-import": "^2.20.2",
     "html-minifier": "^3.5.21",
-    "http-server": "^0.12.1",
+    "http-server": "^0.12.3",
     "imagemin-cli": "^5.1.0",
     "imagemin-gifsicle": "^7.0.0",
     "imagemin-mozjpeg": "^8.0.0",
