@@ -1,6 +1,6 @@
-import commonjs from 'rollup-plugin-commonjs';
-import resolve from 'rollup-plugin-node-resolve';
-import babel from 'rollup-plugin-babel';
+import commonjs from '@rollup/plugin-commonjs';
+import noderesolve from '@rollup/plugin-node-resolve';
+import babel from '@rollup/plugin-babel';
 import { terser } from 'rollup-plugin-terser';
 
 const esm = {
@@ -8,12 +8,12 @@ const esm = {
     output: {
         format: 'es',
         sourcemap: true,
-        file: `public/scripts/main.esm-${process.env.npm_package_version}.min.js`
+        file: `public/scripts/main-${process.env.npm_package_version}.esm.min.js`
     },
     plugins: [
         commonjs(),
-        resolve(),
-        babel(),
+        noderesolve(),
+        babel({ babelHelpers: 'bundled' }),
         terser()
     ]
 };
@@ -22,13 +22,13 @@ const iife = {
     input: 'scripts/main.js',
     output: {
         format: 'iife',
-        file: `public/scripts/main.iife-${process.env.npm_package_version}.min.js`,
+        file: `public/scripts/main-${process.env.npm_package_version}.iife.min.js`,
         name: 'main'
     },
     plugins: [
         commonjs(),
-        resolve(),
-        babel(),
+        noderesolve(),
+        babel({ babelHelpers: 'bundled' }),
         terser()
     ]
 };
