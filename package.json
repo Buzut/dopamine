@@ -24,7 +24,7 @@
     "compress:br": "find ./public \\( -name '*.html' -o -name '*.svg' -o -name '*.js' -o -name '*.css' \\) -exec brotli -Zf '{}' \\;",
     "compress:all": "npm run compress:jpg && npm run compress:png && npm run compress:svg && npm run compress:webp && npm run compress:gz && npm run compress:br",
     "clean": "rm -rf public/",
-    "build": "npm run clean && npm run template:build && npm run copyFonts && npm run css:build && npm run js:build && npm run compress:all",
+    "build": "npm run clean && npm run template:build && npm run copyFonts && npm run css:build:prod && npm run js:build && npm run compress:all",
     "watch": "npm run compress:clean && npm run serve && npm run template:watch & npm run css:watch & npm run js:watch",
     "serve": "http-server"
   },
