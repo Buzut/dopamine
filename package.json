@@ -39,7 +39,7 @@
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-preset-env": "^1.7.0",
     "cssmin": "^0.4.3",
-    "ejs-cli": "git+https://github.com/Buzut/ejs-cli.git",
+    "ejs-cli": "^2.2.1",
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-plugin-import": "^2.20.2",
