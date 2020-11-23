@@ -13,27 +13,11 @@ Dopamine speeds up your workflow by provinding you with a pre-configured templat
 * minify HTML, CSS and JS
 * pre-compress HTML, CSS, JS & SVG files in Gzip and Brotli
 * optimise images and create WebP versions for compatible browsers
-* watch for files updates and run build tasks on update
 * local developement server
 
 In addition, I also added a very convenient [Git commit template](https://github.com/Buzut/git-emojis-hook) that should help a lot.
 
-## Install
-The build steps make use of Gzip and Brotli. While Gzip is probably pre-installed on your system, there are chances that Brotli is not. But, it's only one command away:
-
-```
-# Debian-like distros
-apt install brotli
-
-# macOS
-brew install brotli
-```
-
-Then `npm install` and you're good to go.
-
-NB: although Windows 10 has Linux subsystem, I haven't tried on it.
-
-### How to use?
+## How to use?
 Given the following file structure:
 
 ```
@@ -64,10 +48,10 @@ Note that styles, scripts and images contained in subdirectories won't be copied
 * `npm run watch` to start the dev server and re-build on file update
 * `npm run serve` to start the integrated server on the built files
 
-#### SASS
+### SASS
 There is currently no SASS version, but it's just a few settings to modify. If you create a SASS fork, let me know, I'll be happy to link to it.
 
-#### Apache _.htaccess_
+### Apache _.htaccess_
 There is a "sample-htaccess" file. It contains Apache boilerplate mainly to improve performance:
 
 * take advantage of H2 Server Push
@@ -75,6 +59,9 @@ There is a "sample-htaccess" file. It contains Apache boilerplate mainly to impr
 * serve WebP images when supported
 
 It will also rewrite urls for pretty urls without extension.
+
+### Requirements
+Node.js >= 12 is required for the compression module.
 
 ## Contributing
 There's sure room for improvement, so feel free to hack around and submit PRs!
