@@ -1,6 +1,6 @@
 {
   "name": "dopamine",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "The next big thing",
   "scripts": {
     "prepare": "test -d .git && cd .git/hooks/ && curl -O https://raw.githubusercontent.com/Buzut/git-emojis-hook/master/commit-msg && curl -O https://raw.githubusercontent.com/Buzut/git-emojis-hook/master/prepare-commit-msg && chmod +x * || exit 0",
