@@ -12,7 +12,7 @@
     "js:build": "npm run js:esmbuild && npm run js:iifebuild",
     "js:watch": "BABEL_ENV=esm rollup --config --watch",
     "template:build": "ejs-cli -b templates/ '**/*.ejs' -e partials/ --out public/",
-    "template:watch": "nodemon -e ejs --watch templates -x 'npm run template:build'",
+    "template:watch": "NODE_ENV=dev nodemon -e ejs --watch templates -x 'npm run template:build'",
     "copyFonts": "cp -R ./fonts ./public/",
     "optimise:jpg": "imagemin img/**/*.jpg -p=mozjpeg --out-dir=public/img/",
     "optimise:png": "imagemin img/**/*.png -p=optipng --out-dir=public/img/",
@@ -27,7 +27,7 @@
     "compress:all": "npm run compress:css && npm run compress:js && npm run compress:svg",
     "clean": "rm -rf public/",
     "build": "npm run clean && npm run template:build && npm run copyFonts && npm run css:build:prod && npm run js:build && npm run optimise:all && npm run compress:all",
-    "watch": "npm run compress:clean && npm run serve && npm run template:watch & npm run css:watch & npm run js:watch",
+    "watch": "npm run compress:clean && npm run serve & npm run template:watch & npm run css:watch & npm run js:watch",
     "serve": "http-server"
   },
   "repository": {
@@ -58,6 +58,7 @@
     "imagemin-svgo": "^7.1.0",
     "imagemin-webp": "^6.0.0",
     "less": "^3.11.1",
+    "livereload": "^0.9.3",
     "nodemon": "^2.0.6",
     "postcss-cli": "^8.3.1",
     "rollup": "^2.33.1",
